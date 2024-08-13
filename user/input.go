@@ -15,3 +15,9 @@ type LoginInput struct {
 type CheckEmailInput struct {
 	Email string `json:"email" binding:"required,email"`
 }
+
+type SaveAvatar struct {
+	ID       int `json:"id"`
+	FileName string `json:"file_name"`
+	Filepath string `json:"file_path"`
+}
