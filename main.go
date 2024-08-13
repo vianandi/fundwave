@@ -1,8 +1,10 @@
 package main
 
 import (
+	"campaign/auth"
 	"campaign/handler"
 	"campaign/user"
+	"fmt"
 	"log"
 
 	"github.com/gin-gonic/gin"
@@ -20,6 +22,8 @@ func main() {
 
 	userRepository := user.NewRepository(db)
 	userService := user.NewService(userRepository)
+	authService := auth.NewService()
+	fmt.Println(authService.GenerateToken(1001))
 	userService.SaveAvatar(1, "images/1.jpg")
 
 	userHandler := handler.NewUserHandler(userService)
