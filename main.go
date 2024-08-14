@@ -4,7 +4,7 @@ import (
 	"campaign/auth"
 	"campaign/handler"
 	"campaign/user"
-	"fmt"
+	// "fmt"
 	"log"
 
 	"github.com/gin-gonic/gin"
@@ -23,8 +23,25 @@ func main() {
 	userRepository := user.NewRepository(db)
 	userService := user.NewService(userRepository)
 	authService := auth.NewService()
-	fmt.Println(authService.GenerateToken(1001))
-	userService.SaveAvatar(1, "images/1.jpg")
+	// token, err := authService.ValidateToken("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo4fQ.P0-3CGMGozBc6W2zUOhCZUBCQPrKWoKGSKE3N_YA7pw")
+	// if err != nil {
+	// 	fmt.Println("ERROR")
+	// 	fmt.Println("ERROR")
+	// 	fmt.Println("ERROR")
+	// }
+
+	// if token.Valid {
+	// 	fmt.Println("VALID")
+	// 	fmt.Println("VALID")
+	// 	fmt.Println("VALID")
+	// } else {
+	// 	fmt.Println("INVALID")
+	// 	fmt.Println("INVALID")
+	// 	fmt.Println("INVALID")
+	// }
+
+	// fmt.Println(authService.GenerateToken(1001))
+	// userService.SaveAvatar(1, "images/1.jpg")
 
 	userHandler := handler.NewUserHandler(userService, authService)
 
