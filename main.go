@@ -2,9 +2,11 @@ package main
 
 import (
 	"campaign/auth"
+	"campaign/fundwave"
 	"campaign/handler"
 	"campaign/helper"
 	"campaign/user"
+	"fmt"
 	"net/http"
 	"strings"
 
@@ -26,6 +28,24 @@ func main() {
 	}
 
 	userRepository := user.NewRepository(db)
+	fundwaveRepository := fundwave.NewRepository(db)
+
+	fundwave, err := fundwaveRepository.FindByUserID(8)
+	if err != nil {
+		log.Fatal(err.Error())
+	}	
+
+	fmt.Println("Debug")
+	fmt.Println("Debug")
+	fmt.Println("Debug")
+	fmt.Println(len(fundwave))
+	for _, fundwave := range fundwave {
+		fmt.Println(fundwave.Name)
+		if len(fundwave.FundwaveImages) > 0 {
+			fmt.Println(fundwave.FundwaveImages[0].Filename)
+		}
+	}
+
 	userService := user.NewService(userRepository)
 	authService := auth.NewService()
 	// token, err := authService.ValidateToken("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo4fQ.P0-3CGMGozBc6W2zUOhCZUBCQPrKWoKGSKE3N_YA7pw")
