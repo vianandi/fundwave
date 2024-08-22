@@ -20,7 +20,7 @@ func NewRepository(db *gorm.DB) *repository {
 func (r *repository) FindAll() ([]Fundwave, error) {
 	var fundwave []Fundwave
 
-	err := r.db.Find(&fundwave).Error
+	err := r.db.Preload("FundwaveImages", "fundwave_images.is_primary = 1")Find(&fundwave).Error
 	if err != nil {
 		return fundwave, err
 	}
