@@ -1,7 +1,7 @@
 package fundwave
 
 type Service interface {
-	Findfundawave(userID int) ([]Fundwave, error)
+	Findfundwave(userID int) ([]Fundwave, error)
 }
 
 type service struct {
@@ -12,7 +12,7 @@ func NewService(repository Repository) *service {
 	return &service{repository}
 }
 
-func (s *service) Findfundawave(userID int) ([]Fundwave, error) {
+func (s *service) Findfundwave(userID int) ([]Fundwave, error) {
 	if userID != 0 {
 		fundwave, err := s.repository.FindByUserID(userID)
 		if err != nil {
