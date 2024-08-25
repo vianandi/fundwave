@@ -5,6 +5,7 @@ type Fundwave struct {
 	UserID            int    `json:"userid"`
 	Name              string `json:"name"`
 	Short_description string `json:"short_description"`
+	Description       string `json:"description"`
 	Perks             string `json:"perks"`
 	Becker_count      int    `json:"becker_count"`
 	Goal_amount       int    `json:"goal_amount"`

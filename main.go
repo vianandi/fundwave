@@ -6,7 +6,6 @@ import (
 	"campaign/handler"
 	"campaign/helper"
 	"campaign/user"
-	"fmt"
 	"net/http"
 	"strings"
 
@@ -34,8 +33,7 @@ func main() {
 	fundwaveService := fundwave.NewService(fundwaveRepository)
 	authService := auth.NewService()
 
-	fundwave, _ := fundwaveService.Findfundwave(0)
-	fmt.Println(len(fundwave))
+	
 	// token, err := authService.ValidateToken("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo4fQ.P0-3CGMGozBc6W2zUOhCZUBCQPrKWoKGSKE3N_YA7pw")
 	// if err != nil {
 	// 	fmt.Println("ERROR")
@@ -57,6 +55,7 @@ func main() {
 	// userService.SaveAvatar(1, "images/1.jpg")
 
 	userHandler := handler.NewUserHandler(userService, authService)
+	fundwaveHandler := handler.NewfundwaveHandler(fundwaveService)
 
 	router := gin.Default()
 	api := router.Group("/api/v1")
@@ -66,6 +65,7 @@ func main() {
 	api.POST("/email_checkers", userHandler.CheckEmailAvailability)
 	api.POST("/avatars", authMiddleware(authService, userService), userHandler.UploadAvatar)
 
+	api.GET("/fundwave", fundwaveHandler.Getfundwave)
 	router.Run()
 }
 
