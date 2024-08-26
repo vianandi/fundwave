@@ -6,8 +6,9 @@ type FundwaveFormatter struct {
 	Name              string `json:"name"`
 	Short_description string `json:"short_description"`
 	ImageURL          string `json:"image_url"`
-	Goal_amount        int    `json:"goal_amount"`
-	Current_amount     int    `json:"current_amount"`
+	Goal_amount       int    `json:"goal_amount"`
+	Current_amount    int    `json:"current_amount"`
+	Slug              string `json:"slug"`
 }
 
 func FormmatFundwave(fundwave Fundwave) FundwaveFormatter {
@@ -20,6 +21,7 @@ func FormmatFundwave(fundwave Fundwave) FundwaveFormatter {
 	// fundwaveFormatter.ImageURL = fundwave.ImageURL
 	fundwaveFormatter.Goal_amount = fundwave.Goal_amount
 	fundwaveFormatter.Current_amount = fundwave.Current_amount
+	fundwaveFormatter.Slug = fundwave.Slug
 	fundwaveFormatter.ImageURL = ""
 
 	if len(fundwave.FundwaveImages) > 0 {
