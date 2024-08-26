@@ -43,7 +43,7 @@ func (r *repository) FindByUserID(userID int) ([]Fundwave, error) {
 // FindByID retrieves a fundwave by ID
 func (r *repository) FindByID(ID int) (Fundwave, error) {
 	var fundwave Fundwave
-	err := r.db.Where("id = ?", ID).Find(&fundwave).Error
+	err := r.db.Preload("User").Preload("FundwaveImages").Where("id = ?", ID).Find(&fundwave).Error
 	if err != nil {
 		return fundwave, err
 	}

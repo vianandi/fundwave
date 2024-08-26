@@ -43,3 +43,7 @@ func (h *fundwaveHandler) Getfundwave(c *gin.Context) {
     response := helper.APIResponse("List of fundwave", http.StatusOK, "success", formattedFundwaves)
     c.JSON(http.StatusOK, response)
 }
+
+func (h *fundwaveHandler) Getfundwaves(c *gin.Context) {
+	
+}

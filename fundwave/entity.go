@@ -1,5 +1,7 @@
 package fundwave
 
+import "os/user"
+
 type Fundwave struct {
 	ID                int    `json:"id"`
 	UserID            int    `json:"userid"`
@@ -12,6 +14,7 @@ type Fundwave struct {
 	Current_amount    int    `json:"current_amount"`
 	Slug              string `json:"slug"`
 	FundwaveImages    []FundwaveImages
+	User              user.User	`json:"user"`
 }
 
 type FundwaveImages struct {
