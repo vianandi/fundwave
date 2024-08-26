@@ -30,14 +30,16 @@ func NewfundwaveHandler(service fundwave.Service) *fundwaveHandler {
 // }
 
 func (h *fundwaveHandler) Getfundwave(c *gin.Context) {
-	userID, _ := strconv.Atoi(c.Query("user_id"))
+    userID, _ := strconv.Atoi(c.Query("user_id"))
 
-	fundwave, err := h.service.Getfundwave(userID)
-	if err != nil {
-		response := helper.APIResponse("Error to get fundwave", http.StatusBadRequest, "error", nil)
-		c.JSON(http.StatusBadRequest, response)
-		return
-	}
-	response := helper.APIResponse("List of fundwave", http.StatusOK, "success", fundwave)
-	c.JSON(http.StatusOK, response)
+    fundwaves, err := h.service.Getfundwave(userID)
+    if err != nil {
+        response := helper.APIResponse("Error to get fundwave", http.StatusBadRequest, "error", nil)
+        c.JSON(http.StatusBadRequest, response)
+        return
+    }
+
+    formattedFundwaves := fundwave.FormatFundwaves(fundwaves)
+    response := helper.APIResponse("List of fundwave", http.StatusOK, "success", formattedFundwaves)
+    c.JSON(http.StatusOK, response)
 }
